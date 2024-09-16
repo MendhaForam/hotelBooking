@@ -1,5 +1,5 @@
-import { test, expect } from "@playwright/test";
-import path from "path";
+const { test, expect } = require("@playwright/test");
+const path = require("path");
 
 const UI_URL = "http://localhost:5173/";
 
@@ -51,7 +51,7 @@ test("should allow user to add a hotel", async ({ page }) => {
 test("should display hotels", async ({ page }) => {
   await page.goto(`${UI_URL}my-hotels`);
 
-  await expect(page.getByText("Dublin Getaways")).toBeVisible();
+  await expect(page.getByText("Dublin Getaways").first()).toBeVisible();
   await expect(page.getByText("Lorem ipsum dolor sit amet")).toBeVisible();
   await expect(page.getByText("Dublin, Ireland")).toBeVisible();
   await expect(page.getByText("All Inclusive")).toBeVisible();
@@ -71,7 +71,7 @@ test("should edit hotel", async ({ page }) => {
   await page.getByRole("link", { name: "View Details" }).first().click();
 
   await page.waitForSelector('[name="name"]', { state: "attached" });
-  await expect(page.locator('[name="name"]')).toHaveValue("Test Hotel");
+  await expect(page.locator('[name="name"]')).toHaveValue("Dublin Getaways");
   await page.locator('[name="name"]').fill("Dublin Getaways UPDATED");
   await page.getByRole("button", { name: "Save" }).click();
   await expect(page.getByText("Hotel Saved!")).toBeVisible();

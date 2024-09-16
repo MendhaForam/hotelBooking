@@ -7,6 +7,7 @@ import authRoutes from "./routes/auth.js"
 import cookieParser from "cookie-parser"
 import {v2 as cloudinary} from "cloudinary"
 import myHotelRoutes from "./routes/my-hotels.js"
+import hotelRoutes from "./routes/hotels.js"
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -32,6 +33,7 @@ app.use(cors({
 app.use("/api/auth", authRoutes)
 app.use("/api/users", userRoutes)
 app.use("/api/my-hotels", myHotelRoutes)
+app.use("/api/hotels",hotelRoutes)
 
 // app.get("*", (req,res)=>{
 //   res.sendFile(path.join(__dirname,"../../frontend/index.html"))
