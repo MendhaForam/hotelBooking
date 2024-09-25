@@ -5,6 +5,17 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 
+
+const destinations = [
+  { value: '', label: 'Select your destination' },
+  { value: 'Goa', label: 'Goa' },
+  { value: 'Manali', label: 'Manali' },
+  { value: 'Puri', label: 'Puri' },
+  { value: 'Mumbai', label: 'Mumbai' },
+  { value: 'New Delhi', label: 'New Delhi' },
+  { value: 'Chennai', label: 'Chennai' },
+];
+
 const SearchBar = () => {
   const navigate = useNavigate();
   const search = useSearchContext();
@@ -31,10 +42,12 @@ const SearchBar = () => {
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 1);
 
+
+
   return (
     <form
       onSubmit={handleSubmit}
-      className="-mt-8 p-2 bg-orange-400 rounded shadow-md grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center gap-4"
+      className="-mt-8 p-2 bg-orange-300 rounded shadow-md grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 items-center gap-4"
     >
       <div className="flex flex-row items-center flex-1 bg-white p-2">
         <MdTravelExplore size={25} className="mr-2" />
@@ -45,6 +58,21 @@ const SearchBar = () => {
           onChange={(event) => setDestination(event.target.value)}
         />
       </div>
+
+      {/* <div className="flex flex-row items-center flex-1 bg-white p-2">
+        <MdTravelExplore size={25} className="mr-2" />
+        <select
+          className="text-md w-full focus:outline-none"
+          value={destination}
+          onChange={(event) => setDestination(event.target.value)}
+        >
+          {destinations.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div> */}
 
       <div className="flex bg-white px-1 py-1 gap-1">
         <label className="items-center flex">
